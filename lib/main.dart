@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:starwars_movie_app/config/routes/app_pages.dart';
+import 'package:starwars_movie_app/injection.dart' as inject;
 
 void main() {
+  inject.init();
+
   runApp(const MainApp());
 }
 
