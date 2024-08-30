@@ -17,20 +17,20 @@ class Movie extends Equatable {
   String? url;
 
   Movie({
-    required this.title,
-    required this.episodeId,
-    required this.openingCrawl,
-    required this.director,
-    required this.producer,
-    required this.releaseDate,
-    required this.characters,
-    required this.planets,
-    required this.starships,
-    required this.vehicles,
-    required this.species,
-    required this.created,
-    required this.edited,
-    required this.url,
+    this.title,
+    this.episodeId,
+    this.openingCrawl,
+    this.director,
+    this.producer,
+    this.releaseDate,
+    this.characters,
+    this.planets,
+    this.starships,
+    this.vehicles,
+    this.species,
+    this.created,
+    this.edited,
+    this.url,
   });
 
   @override
