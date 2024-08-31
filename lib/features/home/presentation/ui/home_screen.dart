@@ -2,7 +2,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mapbox_search/mapbox_search.dart';
-import 'package:provider/provider.dart';
 import 'package:starwars_movie_app/features/home/presentation/bloc/cinema_location/bloc/cinema_location_bloc.dart';
 import 'package:starwars_movie_app/features/home/presentation/bloc/user_location/bloc/user_location_bloc.dart';
 import 'package:starwars_movie_app/features/movie/presentation/bloc/list_movie/bloc/list_movie_bloc.dart';
@@ -10,6 +9,7 @@ import 'package:starwars_movie_app/features/movie/presentation/widgets/movie_lis
 import 'package:starwars_movie_app/shared_widgets/empty_list_text.dart';
 import 'package:starwars_movie_app/shared_widgets/error_list.dart';
 import 'package:starwars_movie_app/shared_widgets/loading_list.dart';
+import 'package:starwars_movie_app/utils/notification_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +21,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    NotificationService().configureDidReceiveLocalNotificationSubject(context);
+    NotificationService().configureSelectNotificationSubject(context);
+    NotificationService().repeatNotification();
+
     // Memanggil FetchMovieList
     Future.microtask(
         () => context.read<ListMovieBloc>().add(const FetchMovieList()));

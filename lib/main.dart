@@ -7,6 +7,7 @@ import 'package:starwars_movie_app/config/provider_setting.dart';
 import 'package:starwars_movie_app/config/routes/app_pages.dart';
 import 'package:starwars_movie_app/config/themes/app_color.dart';
 import 'package:starwars_movie_app/injection.dart' as inject;
+import 'package:starwars_movie_app/utils/notification_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() {
   String ACCESS_TOKEN = const String.fromEnvironment("ACCESS_TOKEN");
 
   MapBoxSearch.init(ACCESS_TOKEN);
+  NotificationService().initNotification();
 
   runApp(const MainApp());
 }
