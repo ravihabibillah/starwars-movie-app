@@ -39,6 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Suggestion? findCinema;
   dynamic cinemaCoordinates;
 
+  setCoordinates() async {
+    final search = SearchBoxAPI(
+        // country: 'ID',
+        );
+    String mapboxId = findCinema!.mapboxId;
+    ApiResponse<RetrieveResonse> searchPlace = await search.getPlace(mapboxId);
+
+    cinemaCoordinates =
+        searchPlace.success!.features.first.geometry.coordinates;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,15 +80,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             return const CircularProgressIndicator();
                           } else if (state is CinemasLoaded) {
                             findCinema = state.cinemas.first;
-                            return DropdownSearch<Suggestion>(
-                              selectedItem: findCinema,
-                              itemAsString: (item) => item.name,
-                              items: state.cinemas,
-                              onChanged: (value) async {
-                                setState(() {
-                                  findCinema = value;
-                                });
-                              },
+                            setCoordinates();
+                            return Row(
+                              children: [
+                                Expanded(
+                                  child: DropdownSearch<Suggestion>(
+                                    selectedItem: findCinema,
+                                    itemAsString: (item) => item.name,
+                                    items: state.cinemas,
+                                    onChanged: (value) async {
+                                      findCinema = value;
+                                      setCoordinates();
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.directions),
+                                )
+                              ],
                             );
                           } else if (state is CinemaLocationError) {
                             return Text(state.message);
@@ -91,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(state.message),
                       );
                     } else {
-                      return Center();
+                      return const Center();
                     }
                   },
                 )),
