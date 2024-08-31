@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:starwars_movie_app/features/home/presentation/bloc/cinema_location/bloc/cinema_location_bloc.dart';
+import 'package:starwars_movie_app/features/home/presentation/bloc/user_location/bloc/user_location_bloc.dart';
 import 'package:starwars_movie_app/features/movie/data/datasources/movie_remote_data_source.dart';
 import 'package:starwars_movie_app/features/movie/data/repositories/movie_repository_impl.dart';
 import 'package:starwars_movie_app/features/movie/domain/repositories/movie_repository.dart';
@@ -14,6 +16,12 @@ void init() {
     () => ListMovieBloc(
       getMovieList: locator(),
     ),
+  );
+  locator.registerFactory(
+    () => CinemaLocationBloc(),
+  );
+  locator.registerFactory(
+    () => UserLocationBloc(),
   );
 
   // Repository

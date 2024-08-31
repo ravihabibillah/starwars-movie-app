@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "starwars_movie_app",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+            "--dart-define", "ACCESS_TOKEN=pk.eyJ1IjoicmF2aWhhYmliaWxsYWgiLCJhIjoiY20wZzIyZ2d1MTFiYzJqb2V4Z3ZibHA4ZSJ9._On1IeHN0w9xJEyJal_9rg"
+        ],
+        },
+
+        // {
+        //     "name": "starwars_movie_app (profile mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "profile"
+        // },
+        // {
+        //     "name": "starwars_movie_app (release mode)",
+        //     "request": "launch",
+        //     "type": "dart",
+        //     "flutterMode": "release"
+        // }
+    ]
+}
